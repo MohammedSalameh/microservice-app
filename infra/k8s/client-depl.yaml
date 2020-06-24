@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: client-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: client
+  template: # how every pod in this deployment should behave and find which one to manage
+    metadata:
+      labels:
+        app: client
+    spec:
+      containers:
+        - name: client
+          image: mummisnow/client:latest
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-srv
+spec: # how the service is gonna find the pods that it governs request to
+  selector:
+    app: client
+  ports:
+    - name: client
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
