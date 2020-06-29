@@ -14,7 +14,7 @@ interface UserModel extends mongoose.Model<UserDoc> {
 }
 
 // An interface that describes the properties
-// that a User Document (single) has
+// that a User Document (single) has1
 interface UserDoc extends mongoose.Document {
     email: string;
     password: string;
@@ -40,6 +40,7 @@ const userSchema = new mongoose.Schema({
     }
 });
 
+// Only needed when hashing a password
 userSchema.pre('save', async function(done) { // normal lambda would override the current user.
     if(this.isModified('password')) {
         //only if modified NOTE: runs when creating a new user.
@@ -49,6 +50,7 @@ userSchema.pre('save', async function(done) { // normal lambda would override th
     done();
 })
 
+//validation
 userSchema.statics.build = (attrs: UserAttrs) => {
     return new User(attrs);
 };
