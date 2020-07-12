@@ -2,10 +2,10 @@ import express from 'express';
 import 'express-async-errors';
 import { json } from 'body-parser';
 import cookieSession from 'cookie-session';
-import { createTicketRouter } from './routes/new';
-import { showTicketRouter } from './routes/show';
-import { indexTicketRouter } from './routes/index';
-import { updateTicketRouter } from './routes/update';
+import { deleteOrderRouter } from './routes/delete';
+import { createOrderRouter } from './routes/new';
+import { showOrderRouter } from './routes/show';
+import { indexOrderRouter } from './routes/index';
 
 import { ErrorHandler, NotFoundError, currentUser } from '@mjtickets/common';
 
@@ -22,10 +22,10 @@ app.use(
 
 app.use(currentUser);
 
-app.use(createTicketRouter);
-app.use(showTicketRouter);
-app.use(indexTicketRouter);
-app.use(updateTicketRouter);
+app.use(deleteOrderRouter);
+app.use(createOrderRouter);
+app.use(showOrderRouter);
+app.use(indexOrderRouter);
 
 //unexisting routes (must be before errorhandler)
 app.all('*', async (req, res) => {
