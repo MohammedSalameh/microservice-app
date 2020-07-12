@@ -13,6 +13,7 @@ export default () => {
         },
         onSuccess: () => Router.push('/') //only on succesful login we route through
     });
+    
     const onSubmit = async (event) => {
         event.preventDefault();
         doRequest();

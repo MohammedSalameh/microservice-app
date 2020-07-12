@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css';
-import buildClient from '../api/buid-client';
+import buildClient from '../api/build-client';
 import Header from '../components/header';
 
 //global CSS MUST BE IN YOUR CUSTOM <App>
@@ -12,7 +12,7 @@ const AppComponent = ({Component, pageProps, currentUser}) => {
     );
 };
 
-// req/res is nested insidte ctx in NextJS
+// req/res is nested inside ctx in NextJS
 AppComponent.getInitialProps = async (appContext) => {
     const client = buildClient(appContext.ctx);
     const { data } = await client.get('/api/users/currentuser');
