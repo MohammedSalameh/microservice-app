@@ -1,4 +1,5 @@
 import mongoose, { mongo } from 'mongoose';
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 // An interface that describes the properties
 // that are required to create a new user
@@ -20,6 +21,8 @@ interface TicketDoc extends mongoose.Document {
     title: string;
     price: number;
     userId: string;
+    version: number;
+    orderId?: string;
 }
 
 const ticketSchema = new mongoose.Schema({
@@ -34,6 +37,9 @@ const ticketSchema = new mongoose.Schema({
     userId: {
         type: String,
         required: true
+    },
+    orderId: {
+        type: String,
     }
 },  {
     toJSON:{
@@ -43,6 +49,10 @@ const ticketSchema = new mongoose.Schema({
         }
     }
 });
+
+//track versioning
+ticketSchema.set('versionKey', 'version');
+ticketSchema.plugin(updateIfCurrentPlugin);
 
 //validation
 ticketSchema.statics.build = (attrs: TicketAttrs) => {

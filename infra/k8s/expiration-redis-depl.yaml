@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expiration-redis-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expiration-redis
+  template: # To find the pods it creates
+    metadata:
+      labels:
+        app: expiration-redis # label  for the pod
+    spec:
+      containers:
+        - name: expiration-redis
+          image: redis
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: expiration-redis-srv
+spec:
+  selector: # find the pods with label expiration-redis
+    app: expiration-redis
+  ports:
+    - name: db #logging purposes
+      protocol: TCP
+      port: 6379
+      targetPort: 6379
