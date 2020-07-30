@@ -1,0 +1,18 @@
+name: deploy-manifests
+on: 
+  push: # push happens when a pull or merge request happens on master.
+    branches: 
+      - master
+    paths:
+      - 'infra/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: digitalocean/action-doctl@v2 # install and authenticate doctl in github container
+        with:
+          token:  $ {{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} # allow access to digital ocean with token
+      - run: doctl kubernetes cluster kubeconfig save microservice-app # get connection to digital ocean k8s cluster
+      - run: kubectl apply -f infra/k8s # apply all k8s config files to cluster
