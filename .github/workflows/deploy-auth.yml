@@ -11,9 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: cd auth && docker build -t mummisnow/auth .
-      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - run: cd auth && docker build -t mummisnow/auth . # build
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD # login
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: docker push mummisnow/auth
+      - run: docker push mummisnow/auth # Push
+      - uses: digitalocean/action-doctl@v2 # install and authenticate doctl in github container
+        with:
+          token:  $ {{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} # allow access to digital ocean with token
+      - run: doctl kubernetes cluster kubeconfig save microservice-app # get connection to digital ocean k8s cluster
+      - run: kubectl rollout restart deployment auth-depl # restart to use latest build. (name of deployment under metadata tag in service-specific k8s yaml file)
