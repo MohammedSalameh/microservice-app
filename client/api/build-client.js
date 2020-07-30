@@ -5,7 +5,7 @@ export default ({ req }) => {
     if (typeof window === 'undefined') {
         //on the server! requests should be made to ingress-nginx
         return axios.create({
-            baseURL:'http://ingress-nginx-controller.ingress-nginx.svc.cluster.local',
+            baseURL:'http://microservice-app-test.xyz',
             headers: req.headers
         });
     } else {
