@@ -24,7 +24,7 @@ spec:
   selector: # find the pods with label expiration-redis
     app: expiration-redis
   ports:
-    - name: db #logging purposes
+    - name: db # logging purposes
       protocol: TCP
       port: 6379
       targetPort: 6379
