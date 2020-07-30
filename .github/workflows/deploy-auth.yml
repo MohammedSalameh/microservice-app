@@ -19,6 +19,6 @@ jobs:
       - run: docker push mummisnow/auth # Push
       - uses: digitalocean/action-doctl@v2 # install and authenticate doctl in github container
         with:
-          token:  $ {{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} # allow access to digital ocean with token
+          token:  ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }} # allow access to digital ocean with token
       - run: doctl kubernetes cluster kubeconfig save microservice-app # get connection to digital ocean k8s cluster
       - run: kubectl rollout restart deployment auth-depl # restart to use latest build. (name of deployment under metadata tag in service-specific k8s yaml file)
