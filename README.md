@@ -1,6 +1,12 @@
 # Microservice E-commerce app
 Simple e-commerce app with Docker/Kubernetes (ingress-nginx), Typescript, ReactJS and NextJS.
 
+NATS-Server as a messaging protocol between services.
+
+Stripe API is used for payments.
+
+Databases POSTGRES & MongoDB (mongoose) to handle account information and versioning control between services. Information is encrypted!
+
 ## Docker/Kubernetes
 If you are trying to run this app you need to do either one of the following 2 steps:
 
