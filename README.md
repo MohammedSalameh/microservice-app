@@ -18,6 +18,8 @@ If you are trying to run this app you need to do either one of the following 2 s
 
   * Edit the Hosts file (with admin rights):  
   * copy this in run: ```%SystemRoot%/system32/drivers/etc/hosts``` and add: ```127.0.0.1 ticketing.dev``` at the end and save.
+  
+Also go into the infra-dev/prod and change all the repositories to your image on docker hub. 
       
 ## Ingress-nginx
 Make sure you are using the correct ingress-nginx as this project:
