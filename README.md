@@ -27,3 +27,6 @@ Make sure you are using the correct ingress-nginx as this project:
   If you are familiar with ingress-nginx, at the time, this version was used (run in terminal with admin rights): ```kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml```  
   
    Otherwise here is the proper [Github](https://github.com/kubernetes/ingress-nginx) & [Guide](https://kubernetes.github.io/ingress-nginx/deploy)
+   
+   
+Also be sure to add all the necessary secrets to get the application to run properly, this includes and not limited to (if i forgot something) stripe, jwttoken and docker/kubernetes.
