@@ -12,7 +12,7 @@ If you are trying to run this app you need to do either one of the following 2 s
 
 * *In either step, edit all the yaml files in ```infra/k8s/``` with tag **image** to your own dockerhub accountid. ```image: acountid/x:latest```*
 
-1: Edit the tag "host" in ```infra/k8s/ingress-srv.yaml``` (if unsure this is the file: [ingress-srv.yaml](https://github.com/MohammedSalameh/microservice-app/blob/master/infra/k8s/ingress-srv.yaml) to 127.0.0.1)
+1: Edit the tag "host" in ```infra/k8s/ingress-srv.yaml``` (if unsure this is the file: [ingress-srv.yaml](https://github.com/MohammedSalameh/microservice-app/blob/master/infra/k8s-dev/ingress-srv.yaml) to 127.0.0.1)
 
 2: **OBS:** Do this at your **own risk**, remove after development.
 
